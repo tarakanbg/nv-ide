@@ -8,11 +8,6 @@ local force_inactive = {
   bufnames = {}
 }
 
-local winbar_components = {
-  active = {{}, {}, {}},
-  inactive = {{}, {}, {}},
-}
-
 local components = {
   active = {{}, {}, {}},
   inactive = {{}, {}, {}},
@@ -100,7 +95,6 @@ force_inactive.buftypes = {
   'terminal'
 }
 
--- STATUSLINE
 -- LEFT
 
 -- vi-mode
@@ -140,8 +134,27 @@ components.active[1][3] = {
     fg = 'white',
     bg = 'bg',
     style = 'bold'
+  },
+  right_sep = {
+    str = ' > ',
+    hl = {
+      fg = 'white',
+      bg = 'bg',
+      style = 'bold'
+    },
   }
 }
+-- nvimGps
+components.active[1][4] = {
+  provider = function() return gps.get_location() end,
+  enabled = function() return gps.is_available() end,
+  hl = {
+    fg = 'white',
+    bg = 'bg',
+    style = 'bold'
+  }
+}
+
 -- MID
 
 -- gitBranch
@@ -180,11 +193,57 @@ components.active[2][4] = {
     style = 'bold'
   },
 }
+-- diagnosticErrors
+components.active[2][5] = {
+  provider = 'diagnostic_errors',
+  enabled = function() return lsp.diagnostics_exist(vim.diagnostic.severity.ERROR) end,
+  hl = {
+    fg = 'red',
+    style = 'bold'
+  }
+}
+-- diagnosticWarn
+components.active[2][6] = {
+  provider = 'diagnostic_warnings',
+  enabled = function() return lsp.diagnostics_exist(vim.diagnostic.severity.WARN) end,
+  hl = {
+    fg = 'yellow',
+    style = 'bold'
+  }
+}
+-- diagnosticHint
+components.active[2][7] = {
+  provider = 'diagnostic_hints',
+  enabled = function() return lsp.diagnostics_exist(vim.diagnostic.severity.HINT) end,
+  hl = {
+    fg = 'cyan',
+    style = 'bold'
+  }
+}
+-- diagnosticInfo
+components.active[2][8] = {
+  provider = 'diagnostic_info',
+  enabled = function() return lsp.diagnostics_exist(vim.diagnostic.severity.INFO) end,
+  hl = {
+    fg = 'skyblue',
+    style = 'bold'
+  }
+}
 
 -- RIGHT
 
--- fileIcon
+-- LspName
 components.active[3][1] = {
+  provider = 'lsp_client_names',
+  hl = {
+    fg = 'yellow',
+    bg = 'bg',
+    style = 'bold'
+  },
+  right_sep = ' '
+}
+-- fileIcon
+components.active[3][2] = {
   provider = function()
     local filename = vim.fn.expand('%:t')
     local extension = vim.fn.expand('%:e')
@@ -211,7 +270,7 @@ components.active[3][1] = {
   right_sep = ' '
 }
 -- fileType
-components.active[3][2] = {
+components.active[3][3] = {
   provider = 'file_type',
   hl = function()
     local val = {}
@@ -230,7 +289,7 @@ components.active[3][2] = {
   right_sep = ' '
 }
 -- fileSize
-components.active[3][3] = {
+components.active[3][4] = {
   provider = 'file_size',
   enabled = function() return vim.fn.getfsize(vim.fn.expand('%:t')) > 0 end,
   hl = {
@@ -241,7 +300,7 @@ components.active[3][3] = {
   right_sep = ' '
 }
 -- fileFormat
-components.active[3][4] = {
+components.active[3][5] = {
   provider = function() return '' .. vim.bo.fileformat:upper() .. '' end,
   hl = {
     fg = 'white',
@@ -251,7 +310,7 @@ components.active[3][4] = {
   right_sep = ' '
 }
 -- fileEncode
-components.active[3][5] = {
+components.active[3][6] = {
   provider = 'file_encoding',
   hl = {
     fg = 'white',
@@ -260,7 +319,20 @@ components.active[3][5] = {
   },
   right_sep = ' '
 }
-components.active[3][6] = {
+-- RVMrubyVersion
+-- components.active[3][7] = {
+--   provider = function()
+--     return ' '..vim.fn['rvm#string']()
+--   end,
+--   hl = {
+--     fg = 'red',
+--     bg = 'bg',
+--     style = 'bold'
+--   },
+--   right_sep = ' '
+-- }
+-- lineInfo
+components.active[3][8] = {
   provider = 'position',
   hl = {
     fg = 'white',
@@ -270,7 +342,7 @@ components.active[3][6] = {
   right_sep = ' '
 }
 -- linePercent
-components.active[3][7] = {
+components.active[3][9] = {
   provider = 'line_percentage',
   hl = {
     fg = 'white',
@@ -280,7 +352,7 @@ components.active[3][7] = {
   right_sep = ' '
 }
 -- scrollBar
-components.active[3][8] = {
+components.active[3][10] = {
   provider = 'scroll_bar',
   hl = {
     fg = 'yellow',
@@ -317,98 +389,6 @@ components.inactive[1][1] = {
   }
 }
 
--- WINBAR
--- LEFT
-
--- nvimGps
-winbar_components.active[1][1] = {
-  provider = function() return gps.get_location() end,
-  enabled = function() return gps.is_available() end,
-  hl = {
-    fg = 'orange',
-    style = 'bold'
-  }
-}
-
--- MID
-
--- RIGHT
-
--- LspName
-winbar_components.active[3][1] = {
-  provider = 'lsp_client_names',
-  hl = {
-    fg = 'yellow',
-    style = 'bold'
-  },
-  right_sep = ' '
-}
--- diagnosticErrors
-winbar_components.active[3][2] = {
-  provider = 'diagnostic_errors',
-  enabled = function() return lsp.diagnostics_exist(vim.diagnostic.severity.ERROR) end,
-  hl = {
-    fg = 'red',
-    style = 'bold'
-  }
-}
--- diagnosticWarn
-winbar_components.active[3][3] = {
-  provider = 'diagnostic_warnings',
-  enabled = function() return lsp.diagnostics_exist(vim.diagnostic.severity.WARN) end,
-  hl = {
-    fg = 'yellow',
-    style = 'bold'
-  }
-}
--- diagnosticHint
-winbar_components.active[3][4] = {
-  provider = 'diagnostic_hints',
-  enabled = function() return lsp.diagnostics_exist(vim.diagnostic.severity.HINT) end,
-  hl = {
-    fg = 'cyan',
-    style = 'bold'
-  }
-}
--- diagnosticInfo
-winbar_components.active[3][5] = {
-  provider = 'diagnostic_info',
-  enabled = function() return lsp.diagnostics_exist(vim.diagnostic.severity.INFO) end,
-  hl = {
-    fg = 'skyblue',
-    style = 'bold'
-  }
-}
-
--- INACTIVE
-
--- fileType
-winbar_components.inactive[1][1] = {
-  provider = 'file_type',
-  hl = {
-    fg = 'black',
-    bg = 'cyan',
-    style = 'bold'
-  },
-  left_sep = {
-    str = ' ',
-    hl = {
-      fg = 'NONE',
-      bg = 'cyan'
-    }
-  },
-  right_sep = {
-    {
-      str = ' ',
-      hl = {
-        fg = 'NONE',
-        bg = 'cyan'
-      }
-    },
-    ' '
-  }
-}
-
 require('feline').setup({
   theme = colors,
   default_bg = bg,
@@ -417,9 +397,3 @@ require('feline').setup({
   components = components,
   force_inactive = force_inactive,
 })
-
-require('feline').winbar.setup({
-  components = winbar_components,
-  force_inactive = force_inactive,
-})
-
