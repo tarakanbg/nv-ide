@@ -66,7 +66,8 @@ return require('packer').startup(function(use)
 
   -- Status Line and Bufferline
   use { 'famiu/feline.nvim', config = lua_path"feline" }
-  use { 'romgrk/barbar.nvim' }
+  use { 'kazhala/close-buffers.nvim' }
+  use { 'noib3/nvim-cokeline', config = lua_path"nvim-cokeline" }
 
   -- Telescope
   use { 'nvim-lua/popup.nvim' }
@@ -113,7 +114,6 @@ return require('packer').startup(function(use)
   use { 'tpope/vim-dadbod' }
   use { 'tpope/vim-jdaddy' }
   use { 'tpope/vim-fugitive' }
-  use { 'github/copilot.vim', config = lua_path"copilot" }
   
   -- Folke
   use { 'folke/trouble.nvim' }
