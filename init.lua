@@ -9,4 +9,5 @@ require('settings.filetype')
 -- LSP Config
 require('lsp')
 -- Keymap
-require('settings.keymap')
+--[[ require('settings.keymap') ]]
+require('settings.keymap_svilen')
