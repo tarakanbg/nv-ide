@@ -9,4 +9,7 @@ augroup END
 au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 au BufRead,BufNewFile *.ejs setfiletype html
 au FileType TelescopePrompt setlocal nocursorline
+
+autocmd FileType ledger,beancount set colorcolumn=65,80
+autocmd FileType ledger,beancount set cursorline
 ]], true)

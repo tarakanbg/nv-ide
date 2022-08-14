@@ -1,3 +1,7 @@
+-- Svilen
+vim.g.mapleader = " "
+vim.opt.langmap='ЯQ,ВW,ЕE,РR,ТT,ЪY,УU,ИI,ОO,ПP,Ш{,Щ},АA,СS,ДD,ФF,ГG,ХH,ЙJ,КK,ЛL,ЗZ,ѝX,ЦC,ЖV,БB,НN,МM,яq,вw,еe,рr,тt,ъy,уu,иi,оo,пp,ш[,щ],аa,сs,дd,фf,гg,хh,йj,кk,лl,зz,ьx,цc,жv,бb,нn,мm,§`,±~'
+
 -- <F1> help
 -- <F2> vim-codepainter
 -- <F3> vim-codepainter navigate
@@ -17,11 +21,17 @@ vim.keymap.set('n', '<leader>bp', '<Plug>(cokeline-focus-prev)', {noremap = fals
 -- Git
 vim.keymap.set('n', '<leader>gf', ':20G<CR>', {noremap = false, silent = false})
 vim.keymap.set('n', '<leader>gg', ':LazyGit<CR>', {noremap = false, silent = false})
+
 -- Ctrlsf
-vim.keymap.set('n', '<C-F>f', '<Plug>CtrlSFPrompt', {noremap = false, silent = false})
-vim.keymap.set('v', '<C-F>f', '<Plug>CtrlSFVwordExec', {noremap = false, silent = false})
-vim.keymap.set('n', '<C-F>n', '<Plug>CtrlSFCwordExec', {noremap = false, silent = false})
-vim.keymap.set('n', '<C-F>t', ':CtrlSFToggle<CR>', {noremap = true, silent = false})
+--[[ vim.keymap.set('n', '<C-F>f', '<Plug>CtrlSFPrompt', {noremap = false, silent = false}) ]]
+--[[ vim.keymap.set('v', '<C-F>f', '<Plug>CtrlSFVwordExec', {noremap = false, silent = false}) ]]
+--[[ vim.keymap.set('n', '<C-F>n', '<Plug>CtrlSFCwordExec', {noremap = false, silent = false}) ]]
+--[[ vim.keymap.set('n', '<C-F>t', ':CtrlSFToggle<CR>', {noremap = true, silent = false}) ]]
+
+vim.keymap.set('n', '<leader>f', '<Plug>CtrlSFPrompt', {noremap = false, silent = false})
+vim.keymap.set('v', '<leader>f', '<Plug>CtrlSFVWordPath', {noremap = false, silent = false})
+vim.keymap.set('n', '<leader>ft', ':CtrlSFToggle<CR>', {noremap = true, silent = false})
+
 -- Easy-align
 vim.keymap.set('x', 'ga', '<Plug>(EasyAlign)', {noremap = false, silent = false})
 vim.keymap.set('n', 'ga', '<Plug>(EasyAlign)', {noremap = false, silent = false})
@@ -30,16 +40,18 @@ vim.keymap.set('n', 'f', '<Plug>Lightspeed_f', {noremap = false, silent = false}
 vim.keymap.set('n', 'F', '<Plug>Lightspeed_F', {noremap = false, silent = false})
 vim.keymap.set('n', 't', '<Plug>Lightspeed_t', {noremap = false, silent = false})
 vim.keymap.set('n', 'T', '<Plug>Lightspeed_T', {noremap = false, silent = false})
+
 -- LSP
-vim.keymap.set('n', '<space>,', ':lua vim.lsp.diagnostic.goto_prev()<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<space>;', ':lua vim.lsp.diagnostic.goto_next()<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<space>a', ':lua vim.lsp.diagnostic.code_action()<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<space>d', ':lua vim.lsp.buf.definition()<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<space>f', ':lua vim.lsp.buf.formatting()<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<space>h', ':lua vim.lsp.buf.hover()<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<space>m', ':lua vim.lsp.buf.rename()<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<space>r', ':lua vim.lsp.buf.references()<CR>', {noremap = true, silent = true})
-vim.keymap.set('n', '<space>s', ':lua vim.lsp.buf.document_symbol()<CR>', {noremap = true, silent = true})
+--[[ vim.keymap.set('n', '<space>,', ':lua vim.lsp.diagnostic.goto_prev()<CR>', {noremap = true, silent = true}) ]]
+--[[ vim.keymap.set('n', '<space>;', ':lua vim.lsp.diagnostic.goto_next()<CR>', {noremap = true, silent = true}) ]]
+--[[ vim.keymap.set('n', '<space>a', ':lua vim.lsp.diagnostic.code_action()<CR>', {noremap = true, silent = true}) ]]
+--[[ vim.keymap.set('n', '<space>d', ':lua vim.lsp.buf.definition()<CR>', {noremap = true, silent = true}) ]]
+--[[ vim.keymap.set('n', '<space>f', ':lua vim.lsp.buf.formatting()<CR>', {noremap = true, silent = true}) ]]
+--[[ vim.keymap.set('n', '<space>h', ':lua vim.lsp.buf.hover()<CR>', {noremap = true, silent = true}) ]]
+--[[ vim.keymap.set('n', '<space>m', ':lua vim.lsp.buf.rename()<CR>', {noremap = true, silent = true}) ]]
+--[[ vim.keymap.set('n', '<space>r', ':lua vim.lsp.buf.references()<CR>', {noremap = true, silent = true}) ]]
+--[[ vim.keymap.set('n', '<space>s', ':lua vim.lsp.buf.document_symbol()<CR>', {noremap = true, silent = true}) ]]
+
 -- Telescope
 vim.keymap.set('n', '<leader>r', ":lua require('telescope.builtin').live_grep()<CR>", {noremap = true, silent = true})
 vim.keymap.set('n', '<leader>#', ":lua require('telescope.builtin').grep_string()<CR>", {noremap = true, silent = true})
@@ -97,3 +109,13 @@ vim.keymap.set("n", "<leader>dcc", "<cmd>lua require'telescope'.extensions.dap.c
 vim.keymap.set("n", "<leader>dlb", "<cmd>lua require'telescope'.extensions.dap.list_breakpoints{}<CR>", {silent = true, noremap = true})
 vim.keymap.set("n", "<leader>dv", "<cmd>lua require'telescope'.extensions.dap.variables{}<CR>", {silent = true, noremap = true})
 vim.keymap.set("n", "<leader>df", "<cmd>lua require'telescope'.extensions.dap.frames{}<CR>", {silent = true, noremap = true})
+
+-- Commenting
+vim.keymap.set('n', '\\', ':Commentary<CR>', {noremap = false, silent = false})
+
+-- By Svilen
+vim.keymap.set('n', 'ZZ', ':wqa<CR>', {noremap = false, silent = false})
+vim.keymap.set('n', 'ЗЗ', ':wqa<CR>', {noremap = false, silent = false})
+vim.keymap.set('n', 'Y', 'y$', {noremap = false, silent = false})
+vim.keymap.set('n', 'Ъ', 'y$', {noremap = false, silent = false})
+
