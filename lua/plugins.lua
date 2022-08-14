@@ -58,7 +58,7 @@ return require('packer').startup(function(use)
   use { 'junegunn/vim-easy-align' }
   use { 'mhartington/formatter.nvim', config = lua_path"formatter" }
   use { 'zdharma-continuum/zinit-vim-syntax' }
-  use { 'numToStr/Comment.nvim', config = lua_path"comment"}
+  --[[ use { 'numToStr/Comment.nvim', config = lua_path"comment"} ]]
 
   -- Icons
   use { 'kyazdani42/nvim-web-devicons' }
@@ -156,4 +156,6 @@ return require('packer').startup(function(use)
   use 'ledger/vim-ledger'
   use 'nathangrigg/vim-beancount'
   use 'LokiChaos/vim-tintin'
+  use '907th/vim-auto-save'
+  use 'tpope/vim-commentary'
 end)

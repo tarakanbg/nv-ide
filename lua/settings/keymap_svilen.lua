@@ -112,6 +112,7 @@ vim.keymap.set("n", "<leader>df", "<cmd>lua require'telescope'.extensions.dap.fr
 
 -- Commenting
 vim.keymap.set('n', '\\', ':Commentary<CR>', {noremap = false, silent = false})
+--[[ vim.keymap.set('n', '\\', "<Plug>(comment_toggle_linewise_current)", {noremap = false, silent = false}) ]]
 
 -- By Svilen
 vim.keymap.set('n', 'ZZ', ':wqa<CR>', {noremap = false, silent = false})

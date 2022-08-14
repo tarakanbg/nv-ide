@@ -24,7 +24,8 @@ vim.opt.title = true
 vim.opt.lazyredraw = true
 vim.opt.encoding = 'UTF-8'
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
-vim.opt.clipboard = 'unnamedplus'
+--[[ vim.opt.clipboard = 'unnamedplus' ]]
+vim.opt.clipboard = 'unnamed'
 vim.opt.listchars = { tab = ">>>", trail = "·", precedes = "←", extends = "→",eol = "↲", nbsp = "␣" }
 vim.opt.laststatus = 3
 vim.opt.timeoutlen = 500
@@ -46,7 +47,7 @@ vim.opt.list = false
 vim.opt.foldnestmax = 10
 vim.opt.signcolumn = 'yes'
 vim.opt.relativenumber = true
-vim.opt.foldenable = false
+vim.opt.foldenable = true
 vim.opt.cursorline = true
 
 vim.cmd[[autocmd BufReadPost * lua goto_last_pos()]]
@@ -58,3 +59,10 @@ function goto_last_pos()
 end
 
 vim.cmd 'au TextYankPost * silent! lua vim.highlight.on_yank()'
+
+-- Svilen
+vim.opt.textwidth=80
+
+-- Auto Save Plugin
+vim.g.auto_save = 1
+vim.g.auto_save_silent = 1
