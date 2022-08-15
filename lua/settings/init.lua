@@ -47,7 +47,7 @@ vim.opt.list = false
 vim.opt.foldnestmax = 10
 vim.opt.signcolumn = 'yes'
 vim.opt.relativenumber = true
-vim.opt.foldenable = true
+vim.opt.foldenable = false
 vim.opt.cursorline = true
 
 vim.cmd[[autocmd BufReadPost * lua goto_last_pos()]]
