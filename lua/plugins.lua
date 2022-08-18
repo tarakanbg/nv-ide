@@ -11,7 +11,12 @@ end
 
 vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
 
-require('packer').init({display = {auto_clean = false}})
+require('packer').init(
+  {
+    display = {auto_clean = false},
+    max_jobs = 3
+  }
+)
 
 return require('packer').startup(function(use)
 
