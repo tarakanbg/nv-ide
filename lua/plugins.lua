@@ -163,4 +163,5 @@ return require('packer').startup(function(use)
   use 'LokiChaos/vim-tintin'
   use '907th/vim-auto-save'
   use 'tpope/vim-commentary'
+  use 'github/copilot.vim'
 end)
