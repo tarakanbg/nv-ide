@@ -164,5 +164,6 @@ return require('packer').startup(function(use)
   use '907th/vim-auto-save'
   use 'tpope/vim-commentary'
   use 'github/copilot.vim'
-  use 'kana/vim-textobj-entire'
+  -- Doesn't work:
+  -- use 'kana/vim-textobj-entire'
 end)
