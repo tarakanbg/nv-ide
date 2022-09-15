@@ -166,4 +166,6 @@ return require('packer').startup(function(use)
   use 'github/copilot.vim'
   -- Doesn't work:
   -- use 'kana/vim-textobj-entire'
+  -- Doesn't work:
+  -- use 'Jakski/vim-yaml'
 end)
