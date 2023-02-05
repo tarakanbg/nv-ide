@@ -32,7 +32,7 @@ vim.opt.timeoutlen = 500
 -- Buffer
 vim.opt.fileformat = 'unix'
 vim.opt.tabstop = 2
-vim.opt.spelllang = 'it'
+vim.opt.spelllang = 'en'
 vim.opt.softtabstop = 2
 vim.opt.swapfile = false
 vim.opt.undofile = false
